@@ -8,6 +8,9 @@ export interface Item {
   AUGBL: string;
   PSWBT: string;
   PSWSL: string;
+  BELNR: string;
+  ZFBDT: string;
+  BUZEI: string;
 } 
 @Component({
   selector: 'app-credit-memo',
@@ -16,7 +19,7 @@ export interface Item {
 })
 export class CreditMemoComponent implements OnInit {
   ELEMENT_DATA: Item[]=[];
-  displayedColumns: string[]=['GJAHR','AUGDT','AUGBL','PSWBT','PSWSL'];
+  displayedColumns: string[]=['GJAHR','AUGDT','AUGBL','PSWBT','PSWSL','BELNR','ZFBDT','BUZEI'];
   dataSource =new MatTableDataSource<Item>(this.ELEMENT_DATA);
   constructor(private http: HttpClient) { }
   result : any;

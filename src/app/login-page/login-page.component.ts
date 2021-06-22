@@ -29,7 +29,7 @@ export class LoginPageComponent implements OnInit {
       console.log(result);
       this.output = result;
       this.output = this.output['BAPIRETURN'];
-      this.output = this.output['TYPECODE'];
+      this.output = this.output['TYPE'];
       console.log(this.output);
       if (this.output == "S") {
         this.share.custidUpdate(this.f.value.username);
@@ -42,6 +42,5 @@ export class LoginPageComponent implements OnInit {
     });
   }
 }
-
 
 //KC#01int%^&

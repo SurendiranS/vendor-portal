@@ -9,6 +9,7 @@ import { PurchaseOrderComponent } from './purchase-order/purchase-order.componen
 import { GoodsReceiptComponent } from './goods-receipt/goods-receipt.component';
 import { ProfileViewComponent } from './profile-view/profile-view.component';
 import { ProfileUpdateComponent } from './profile-update/profile-update.component';
+import { DebitMemoComponent } from './debit-memo/debit-memo.component';
 
 
 
@@ -18,11 +19,11 @@ const routes: Routes = [
   {path:'quotation', component:QuotationComponent},
   {path:'purchase', component:PurchaseOrderComponent},
   {path:'goods-receipt', component:GoodsReceiptComponent},
-  {path:'credit-debit',component:CreditMemoComponent},
+  {path:'credit-memo',component:CreditMemoComponent},
   {path:'payment-aging',component:PaymentComponent},
   {path:'invoice',component:InvoiceComponent},
   {path:'profile-view', component:ProfileViewComponent},
-  {path:'credit-credit', component:CreditMemoComponent},
+  {path:'debit-memo', component:DebitMemoComponent},
   {path:'**', component: LoginPageComponent }
 ];
 

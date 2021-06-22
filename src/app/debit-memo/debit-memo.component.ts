@@ -4,11 +4,14 @@ import {HttpClient} from '@angular/common/http';
 
 export interface Item {
   GJAHR: string;
-  AUGDT: string ;
+  AUGDT: string;
   AUGBL: string;
   PSWBT: string;
   PSWSL: string;
-} 
+  BELNR: string;
+  ZFBDT: string;
+  BUZEI: string;
+}  
 
 @Component({
   selector: 'app-debit-memo',
@@ -17,7 +20,7 @@ export interface Item {
 })
 export class DebitMemoComponent implements OnInit {
   ELEMENT_DATA: Item[]=[];
-  displayedColumns: string[]=['GJAHR','AUGDT','AUGBL','PSWBT','PSWSL'];
+  displayedColumns: string[]=['GJAHR','AUGDT','AUGBL','PSWBT','PSWSL','BELNR','ZFBDT','BUZEI'];
   dataSource =new MatTableDataSource<Item>(this.ELEMENT_DATA);
 
   constructor(private http: HttpClient) { }
@@ -28,5 +31,4 @@ export class DebitMemoComponent implements OnInit {
     // this.dataSource.data.push
     console.log(this.dataSource);
   }
-
 }

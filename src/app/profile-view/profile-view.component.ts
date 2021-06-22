@@ -11,9 +11,10 @@ export class ProfileViewComponent implements OnInit {
   constructor(private http: HttpClient) { }
   output:any;
   ngOnInit(): void {
-    this.http.post('http://localhost:3000/getCustomerDetails', undefined).subscribe(result => {
+    this.http.post('http://localhost:3000/vendorDetails', undefined).subscribe(result => {
       console.log(result);
       this.output = result;
+      this.output = this.output['IT_OUT']
       console.log(this.output);
     });
   }

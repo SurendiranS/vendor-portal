@@ -10,8 +10,8 @@ export class ProfileUpdateComponent implements OnInit {
 
   constructor(private http: HttpClient) {
     
-  }
-
+  } 
+ 
   ngOnInit(): void {
   }
 

@@ -26,12 +26,12 @@ app.post('/login', (req, res) => {
     const username = req.body.username;
     const pwd = req.body.password;
     const postData = `<?xml version="1.0" encoding="UTF-8"?>
-    <ns0:MT_RFC_REQ xmlns:ns0="http://pooja_custom_auth.com">
-      <USERNAME>${username}</USERNAME>
-       <PASSWORD>${pwd}</PASSWORD>
-    </ns0:MT_RFC_REQ>`;
+    <ns0:ZFM_POO_VENDOR_AUTH xmlns:ns0="urn:sap-com:document:sap:rfc:functions">
+       <PASSWORD>PASS1</PASSWORD>
+       <USERNAME>1</USERNAME>
+    </ns0:ZFM_POO_VENDOR_AUTH>`;
     var options = {
-        url: 'http://dxktpipo.kaarcloud.com:50000/RESTAdapter/authentication',
+        url: 'http://dxktpipo.kaarcloud.com:50000/RESTAdapter/poo/vendauth',
         headers: {
             'Content-Type': 'application/xml',
             'Authorization': 'Basic UE9VU0VSOlRlY2hAMjAyMQ=='
@@ -117,7 +117,6 @@ app.post('/debit', (req, res) => {
     })
 })
 
-
 //customer credit
 app.post('/credit', (req, res) => {
     const username = req.body.id;
@@ -135,7 +134,6 @@ app.post('/credit', (req, res) => {
         },
         body: postData
     }
-
     request.post(options, function (error, response, body) {
         if (!error && response.statusCode == 200) {
             let json = JSON.parse(response.body);
@@ -183,17 +181,17 @@ app.post('/delivery', (req, res) => {
 })
 
 
-//customer Details
-app.post('/getCustomerDetails', (req, res) => {
+//profile
+app.post('/vendorDetails', (req, res) => {
     const username = req.body.id;
     //const pwd=req.body.password;
     console.log(username);
     const postData = `<?xml version="1.0" encoding="UTF-8"?>
-    <ns0:MT_CUST_DET_REQ xmlns:ns0="http://pooja_custom_details.com">
-      <CUSTOMER_ID>0000000011</CUSTOMER_ID>
-    </ns0:MT_CUST_DET_REQ>`;
+    <ns0:ZFM_POO_VENDOR_DETAILS xmlns:ns0="urn:sap-com:document:sap:rfc:functions">
+    <VENDOR_ID>SA1000</VENDOR_ID>
+    </ns0:ZFM_POO_VENDOR_DETAILS>`;
     var options = {
-        url: 'http://dxktpipo.kaarcloud.com:50000/RESTAdapter/customer/details',
+        url: 'http://dxktpipo.kaarcloud.com:50000/RESTAdapter/poo/venddetails',
         headers: {
             'Content-Type': 'application/xml',
             'Authorization': 'Basic UE9VU0VSOlRlY2hAMjAyMQ=='
@@ -203,7 +201,6 @@ app.post('/getCustomerDetails', (req, res) => {
     request.post(options, function (error, response, body) {
         if (!error && response.statusCode == 200) {
             let json = JSON.parse(response.body);
-            json = json['OUTPUT_USER_DETAILS_TABLE'];
             res.send(json);
             console.log(json);
             var time = new Date();
@@ -245,42 +242,114 @@ app.post('/payment', (req, res) => {
 })
 
 
-app.post('/masterdata', (req, res) => {​​​​​​​
-const postData = `<?xml version="1.0" encoding="UTF-8"?>
-<ns0:MT_CUST_MASTERDATA_REQ xmlns:ns0="http://pooja_custom_masterdata.com">
-  <FIRST_NAME>RAM</FIRST_NAME>
-   <LAST_NAME>KUMAR</LAST_NAME>
-   <TELEPHONE>9894021876</TELEPHONE>
-   <STREET>KK ROAD</STREET>
-   <POSTL_CODE>603404</POSTL_CODE>
-   <CITY>VILLUPURAM</CITY>
-   <COUNTRY>IN</COUNTRY>
-   <LANGU_P>EN</LANGU_P>
-   <CURRENCY>INR</CURRENCY>
-   <REF_COMPANY>SA01</REF_COMPANY>
-   <DISTRIBUTION_CHANNEL>S1</DISTRIBUTION_CHANNEL>
-   <DIVISION>S1</DIVISION>
-   <REF_CUSTOMER>0006000042</REF_CUSTOMER>
-</ns0:MT_CUST_MASTERDATA_REQ>`;
-  var options = {​​​​​​​
-    url: 'http://dxktpipo.kaarcloud.com:50000/RESTAdapter/masterdatarang',
-    headers: {​​​​​​​
-      'Content-Type': 'application/xml',
-      'Authorization': 'Basic UE9VU0VSOlRlY2hAMjAyMQ=='
-    }​​​​​​​,
-    body: postData
-  }​​​​​​​
-  request.post(options, function (error, response, body) {​​​​​​​
-    if (!error && response.statusCode == 200) {​​​​​​​
-      let json = JSON.parse(response.body)
-      res.send(json);
-      console.log(json);
-      console.log(json.CUTOMERNO);
-    }​​​​​​​ else {​​​​​​​
-      console.log("error")
-    }​​​​​​​
-  }​​​​​​​)
-}​​​​​​​)
+//Goods reciept
+app.post('/goods/HEADER_TABLE', (req, res) => {
+    const postData = `<?xml version="1.0" encoding="UTF-8"?>
+    <ns0:MM_VEND_GOODRECP_REQ xmlns:ns0="http://pooja_vendor_goodrecp_det.com">
+       <VENDOR_ID>SA1000</VENDOR_ID>
+    </ns0:MM_VEND_GOODRECP_REQ>`;
+    var options = {
+        url: 'http://dxktpipo.kaarcloud.com:50000/RESTAdapter/poo/vendgoodrecp',
+        headers: {
+            'Content-Type': 'application/xml',
+            'Authorization': 'Basic UE9VU0VSOlRlY2hAMjAyMQ=='
+        },
+        body: postData
+    }
+    request.post(options, function (error, response, body) {
+        if (!error && response.statusCode == 200) {
+            let json = JSON.parse(response.body);
+            json = json['HEADER_TABLE'];
+            res.send(json);
+            console.log(json);
+            var time = new Date();
+            console.log(time.getHours() + ":" + time.getMinutes() + ":" + time.getSeconds());
+        } else {
+            console.log("error")
+        }
+    })
+})
+app.post('/goods/ITEM_TABLE', (req, res) => {
+    const postData = `<?xml version="1.0" encoding="UTF-8"?>
+    <ns0:MM_VEND_GOODRECP_REQ xmlns:ns0="http://pooja_vendor_goodrecp_det.com">
+       <VENDOR_ID>SA1000</VENDOR_ID>
+    </ns0:MM_VEND_GOODRECP_REQ>`;
+    var options = {
+        url: 'http://dxktpipo.kaarcloud.com:50000/RESTAdapter/poo/vendgoodrecp',
+        headers: {
+            'Content-Type': 'application/xml',
+            'Authorization': 'Basic UE9VU0VSOlRlY2hAMjAyMQ=='
+        },
+        body: postData
+    }
+    request.post(options, function (error, response, body) {
+        if (!error && response.statusCode == 200) {
+            let json = JSON.parse(response.body);
+            json = json['ITEM_TABLE'];
+            res.send(json);
+            console.log(json);
+            var time = new Date();
+            console.log(time.getHours() + ":" + time.getMinutes() + ":" + time.getSeconds());
+        } else {
+            console.log("error")
+        }
+    })
+})
+
+
+//purchase order
+app.post('/purchase/HEADER_TABLE', (req, res) => {
+    const postData = `<?xml version="1.0" encoding="UTF-8"?>
+    <ns0:MT_VEND_PURCHORD_REQ xmlns:ns0="http://pooja_vendor_purchord.com">
+    <VENDOR_ID>SA1000</VENDOR_ID>
+    </ns0:MT_VEND_PURCHORD_REQ>`;
+    var options = {
+        url: 'http://dxktpipo.kaarcloud.com:50000/RESTAdapter/poo/vendpurchord',
+        headers: {
+            'Content-Type': 'application/xml',
+            'Authorization': 'Basic UE9VU0VSOlRlY2hAMjAyMQ=='
+        },
+        body: postData
+    }
+    request.post(options, function (error, response, body) {
+        if (!error && response.statusCode == 200) {
+            let json = JSON.parse(response.body);
+            json = json['HEADER_TABLE'];
+            res.send(json);
+            console.log(json);
+            var time = new Date();
+            console.log(time.getHours() + ":" + time.getMinutes() + ":" + time.getSeconds());
+        } else {
+            console.log("error")
+        }
+    })
+})
+app.post('/purchase/ITEM_TABLE', (req, res) => {
+    const postData = `<?xml version="1.0" encoding="UTF-8"?>
+    <ns0:MT_VEND_PURCHORD_REQ xmlns:ns0="http://pooja_vendor_purchord.com">
+    <VENDOR_ID>SA1000</VENDOR_ID>
+    </ns0:MT_VEND_PURCHORD_REQ>`;
+    var options = {
+        url: 'http://dxktpipo.kaarcloud.com:50000/RESTAdapter/poo/vendpurchord',
+        headers: {
+            'Content-Type': 'application/xml',
+            'Authorization': 'Basic UE9VU0VSOlRlY2hAMjAyMQ=='
+        },
+        body: postData
+    }
+    request.post(options, function (error, response, body) {
+        if (!error && response.statusCode == 200) {
+            let json = JSON.parse(response.body);
+            json = json['ITEM_TABLE'];
+            res.send(json);
+            console.log(json);
+            var time = new Date();
+            console.log(time.getHours() + ":" + time.getMinutes() + ":" + time.getSeconds());
+        } else {
+            console.log("error")
+        }
+    })
+})
 
 
 app.listen(3000, () => {

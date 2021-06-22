@@ -34,6 +34,21 @@
       <th mat-header-cell *matHeaderCellDef> Upt currency for GL </th>
       <td mat-cell *matCellDef="let element"> {{element.PSWSL}} </td>
     </ng-container>
+
+    <ng-container matColumnDef="BELNR">
+      <th mat-header-cell *matHeaderCellDef> Doc No of clr doc </th>
+      <td mat-cell *matCellDef="let element"> {{element.BELNR}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="ZFBDT">
+      <th mat-header-cell *matHeaderCellDef> Bline Date </th>
+      <td mat-cell *matCellDef="let element"> {{element.ZFBDT}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="BUZEI">
+      <th mat-header-cell *matHeaderCellDef> No of line item </th>
+      <td mat-cell *matCellDef="let element"> {{element.BUZEI}} </td>
+    </ng-container>
   
     <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky:true"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>

@@ -1,1 +1,111 @@
-<p>goods-receipt works!</p>
+<div class="example-container mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+      <ng-container matColumnDef="MAT_NUMBER">
+        <th mat-header-cell *matHeaderCellDef> MAT_NUMBER </th>
+        <td mat-cell *matCellDef="let element"> {{element.MAT_NUMBER}} </td>
+      </ng-container>
+  
+      <!-- Name Column -->
+      <ng-container matColumnDef="DOC_YEAR">
+        <th mat-header-cell *matHeaderCellDef> DOC_YEAR </th>
+        <td mat-cell *matCellDef="let element"> {{element.DOC_YEAR}} </td>
+      </ng-container>
+  
+      <!-- Weight Column -->
+      <ng-container matColumnDef="TR_EV_TYPE">
+        <th mat-header-cell *matHeaderCellDef> TR_EV_TYPE </th>
+        <td mat-cell *matCellDef="let element"> {{element.TR_EV_TYPE}} </td>
+      </ng-container>
+  
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="PSTING_DATE">
+        <th mat-header-cell *matHeaderCellDef> PSTING_DATE </th>
+        <td mat-cell *matCellDef="let element"> {{element.PSTING_DATE}} </td>
+      </ng-container>
+  
+      <ng-container matColumnDef="ENTRY_DATE">
+        <th mat-header-cell *matHeaderCellDef> ENTRY_DATE </th>
+        <td mat-cell *matCellDef="let element"> {{element.ENTRY_DATE}} </td>
+      </ng-container>
+  
+      <ng-container matColumnDef="ENTRY_TIME">
+        <th mat-header-cell *matHeaderCellDef> ENTRY_TIME </th>
+        <td mat-cell *matCellDef="let element"> {{element.ENTRY_TIME}} </td>
+      </ng-container>
+  
+      <ng-container matColumnDef="USERNAME">
+        <th mat-header-cell *matHeaderCellDef> USERNAME </th>
+        <td mat-cell *matCellDef="let element"> {{element.USERNAME}} </td>
+      </ng-container>
+  
+      <ng-container matColumnDef="VER_GR_GI_SLIP">
+        <th mat-header-cell *matHeaderCellDef> VER_GR_GI_SLIP </th>
+        <td mat-cell *matCellDef="let element"> {{element.VER_GR_GI_SLIP}} </td>
+      </ng-container>
+  
+      <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky:true"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    <!-- <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator> -->
+  </div>
+  
+  <div class="example-container mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource1" class="mat-elevation-z8">
+      <ng-container matColumnDef="MAT_NUMBER">
+        <th mat-header-cell *matHeaderCellDef> MAT_NUMBER </th>
+        <td mat-cell *matCellDef="let element"> {{element.MAT_NUMBER}} </td>
+      </ng-container>
+  
+      <!-- Name Column -->
+      <ng-container matColumnDef="DOC_YEAR">
+        <th mat-header-cell *matHeaderCellDef> DOC_YEAR </th>
+        <td mat-cell *matCellDef="let element"> {{element.DOC_YEAR}} </td>
+      </ng-container>
+  
+      <!-- Weight Column -->
+      <ng-container matColumnDef="MATDOC_ITM">
+        <th mat-header-cell *matHeaderCellDef> MATDOC_ITM </th>
+        <td mat-cell *matCellDef="let element"> {{element.MATDOC_ITM}} </td>
+      </ng-container>
+  
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="MATERIAL">
+        <th mat-header-cell *matHeaderCellDef> MATERIAL </th>
+        <td mat-cell *matCellDef="let element"> {{element.MATERIAL}} </td>
+      </ng-container>
+  
+      <ng-container matColumnDef="PLANT">
+        <th mat-header-cell *matHeaderCellDef> PLANT </th>
+        <td mat-cell *matCellDef="let element"> {{element.PLANT}} </td>
+      </ng-container>
+  
+      <ng-container matColumnDef="VENDOR">
+        <th mat-header-cell *matHeaderCellDef> VENDOR </th>
+        <td mat-cell *matCellDef="let element"> {{element.VENDOR}} </td>
+      </ng-container>
+  
+      <ng-container matColumnDef="ENTRY_QUAN">
+        <th mat-header-cell *matHeaderCellDef> ENTRY_QUAN </th>
+        <td mat-cell *matCellDef="let element"> {{element.ENTRY_QUAN}} </td>
+      </ng-container>
+  
+      <ng-container matColumnDef="ENT">
+        <th mat-header-cell *matHeaderCellDef> ENT </th>
+        <td mat-cell *matCellDef="let element"> {{element.ENT}} </td>
+      </ng-container>
+  
+      <ng-container matColumnDef="PO_NUMBER">
+        <th mat-header-cell *matHeaderCellDef> PO_NUMBER </th>
+        <td mat-cell *matCellDef="let element"> {{element.PO_NUMBER}} </td>
+      </ng-container>
+  
+      <ng-container matColumnDef="PO_IT">
+        <th mat-header-cell *matHeaderCellDef> PO_IT </th>
+        <td mat-cell *matCellDef="let element"> {{element.PO_IT}} </td>
+      </ng-container>
+  
+      <tr mat-header-row *matHeaderRowDef="displayedColumns1; sticky:true"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns1;"></tr>
+    </table>
+    <!-- <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator> -->
+  </div>
